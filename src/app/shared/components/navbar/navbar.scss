@@ -1,0 +1,7 @@
+.nav-link {
+  cursor: pointer;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: var(--bs-pink) !important;
+}

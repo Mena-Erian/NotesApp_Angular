@@ -1,1 +1,135 @@
-<p>register works!</p>
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="registerUser()"
+  class="mt-4 p-4 mx-auto bg-white rounded-4 shadow-lg"
+>
+  <h1>Register</h1>
+
+  @if (errMsg) {
+  <div class="alert alert-danger text-center my-3 w-75 mx-auto">
+    <p class="mb-0">{{errMsg}}</p>
+  </div>
+  }
+
+  <div class="mt-3">
+    <label for="userName">User Name: </label>
+    <input
+      [ngClass]="{
+      'is-valid': !registerForm.get('name')?.errors &&registerForm.get('name')?.touched,
+      'is-invalid': registerForm.get('name')?.errors && registerForm.get('name')?.touched
+    }"
+      formControlName="name"
+      class="form-control"
+      type="text"
+      name="userName"
+      id="userName"
+    />
+    @if (registerForm.get('name')?.touched && !registerForm.get('name')?.valid)
+    {
+    <div class="alert alert-danger mt-2">
+      @if (registerForm.get('name')?.getError('required')) {
+      <p class="mb-0">Name is Required</p>
+      } @if (registerForm.get('name')?.getError('minlength')) {
+      <p class="mb-0">Name Must be more than 3 charactors</p>
+      }
+    </div>
+    }
+  </div>
+  <div class="mt-3">
+    <label for="email">User email: </label>
+    <input
+      [ngClass]="{
+      'is-valid': !registerForm.get('email')?.errors &&registerForm.get('email')?.touched,
+      'is-invalid': registerForm.get('email')?.errors && registerForm.get('email')?.touched
+    }"
+      formControlName="email"
+      class="form-control"
+      type="email"
+      name="email"
+      id="email"
+    />
+    @if (registerForm.get('email')?.touched &&
+    !registerForm.get('email')?.valid) {
+    <div class="alert alert-danger mt-2">
+      @if (registerForm.get('email')?.getError('required')) {
+      <p class="mb-0">email is Required</p>
+      } @if (registerForm.get('email')?.getError('email')) {
+      <p class="mb-0">Your Email is Not Vaild</p>
+      }
+    </div>
+    }
+  </div>
+  <div class="mt-3">
+    <label for="pass">password: </label>
+    <input
+      [ngClass]="{
+      'is-valid': !registerForm.get('password')?.errors &&registerForm.get('password')?.touched,
+      'is-invalid': registerForm.get('password')?.errors && registerForm.get('password')?.touched
+    }"
+      formControlName="password"
+      class="form-control"
+      type="password"
+      name="pass"
+      id="pass"
+    />
+    @if (registerForm.get('password')?.touched &&
+    !registerForm.get('password')?.valid) {
+    <div class="alert alert-danger mt-2">
+      @if (registerForm.get('password')?.getError('required')) {
+      <p class="mb-0">password is Required</p>
+      } @if (registerForm.get('password')?.getError('pattern')) {
+      <p class="mb-0">password Must be more than 4 charactors</p>
+      }
+    </div>
+    }
+  </div>
+  <div class="mt-3">
+    <label for="age">Age: </label>
+    <input
+      [ngClass]="{
+      'is-valid': !registerForm.get('age')?.errors &&registerForm.get('age')?.touched,
+      'is-invalid': registerForm.get('age')?.errors && registerForm.get('age')?.touched
+    }"
+      formControlName="age"
+      class="form-control"
+      type="number"
+      name="age"
+      id="age"
+    />
+    @if (registerForm.get('age')?.touched && !registerForm.get('age')?.valid) {
+    <div class="alert alert-danger mt-2">
+      @if (registerForm.get('age')?.getError('required')) {
+      <p class="mb-0">Age is Required</p>
+      } @if (registerForm.get('age')?.getError('min')) {
+      <p class="mb-0">Your Age Should to be bigger than 20 Years</p>
+      }
+    </div>
+    }
+  </div>
+  <div class="mt-3">
+    <label for="phone">Phone: </label>
+    <input
+      [ngClass]="{
+      'is-valid': !registerForm.get('phone')?.errors &&registerForm.get('phone')?.touched,
+      'is-invalid': registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+    }"
+      formControlName="phone"
+      class="form-control"
+      type="tel"
+      name="phone"
+      id="phone"
+    />
+    @if (registerForm.get('phone')?.touched &&
+    !registerForm.get('phone')?.valid) {
+    <div class="alert alert-danger mt-2">
+      @if (registerForm.get('phone')?.getError('required')) {
+      <p class="mb-0">Your phone is Required</p>
+      } @if (registerForm.get('phone')?.getError('pattern')) {
+      <p class="mb-0">Your phone Number is Not Vaild Or Not Egyption Number</p>
+      }
+    </div>
+    }
+  </div>
+
+  <button class="btn btn-danger mt-3" type="submit">Register</button>
+</form>

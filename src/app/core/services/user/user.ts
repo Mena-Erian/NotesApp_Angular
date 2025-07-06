@@ -16,6 +16,6 @@ export class User {
     return this.httpClient.post(`${environment.baseUrl}/users/signIn`, data);
   }
   signUp(data: SignUpSubmit): Observable<any> {
-    return this.httpClient.post(`${environment.baseUrl}/users/singUp`, data);
+    return this.httpClient.post(`${environment.baseUrl}/users/signUp`, data);
   }
 }

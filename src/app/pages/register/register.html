@@ -3,7 +3,7 @@
   (ngSubmit)="registerUser()"
   class="mt-4 p-4 mx-auto bg-white rounded-4 shadow-lg"
 >
-  <h1>Register</h1>
+  <h1 class="text-center">Register</h1>
 
   @if (errMsg) {
   <div class="alert alert-danger text-center my-3 w-75 mx-auto">
@@ -131,5 +131,15 @@
     }
   </div>
 
-  <button class="btn btn-danger mt-3" type="submit">Register</button>
+  <button
+    class="btn btn-danger mt-3"
+    type="submit"
+    [disabled]="!registerForm.valid"
+  >
+    @if (!isLoading) { Register } @else {
+    <div class="spinner-border text-white" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    }
+  </button>
 </form>

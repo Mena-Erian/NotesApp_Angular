@@ -18,6 +18,8 @@ export class Register {
   private readonly userService: User = inject(User);
   private readonly router: Router = inject(Router);
   errMsg: string = '';
+  successMsg: string = '';
+  isLoading: boolean = false;
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required, Validators.minLength(3)]), // Valdite the Length of Value
@@ -35,17 +37,30 @@ export class Register {
 
   registerUser() {
     console.log(this.registerForm.value);
-    if (this.registerForm.valid)
+    if (this.registerForm.valid) {
+      this.isLoading = true;
       this.userService.signUp(this.registerForm.value).subscribe({
         next: (res) => {
+          this.isLoading = false;
           console.log(res);
-          this.router.navigate([`/home`]);
+          this.errMsg = '';
+          if (res?.msg == 'done') {
+            this.successMsg = 'Register Success';
+            localStorage.setItem('token', res.token);
+            setTimeout(() => {
+              this.router.navigate(['./home']);
+            }, 1500);
+          }
         },
         error: (err) => {
+          this.isLoading = false;
           console.log(err);
           this.errMsg = err.error.msg;
         },
       });
-    else console.log('YOUR Data Not Valid');
+    } else {
+      this.errMsg = 'Your Data Not Valid';
+      console.log('YOUR Data Not Valid');
+    }
   }
 }

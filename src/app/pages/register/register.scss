@@ -1,0 +1,57 @@
+h1 {
+  position: relative;
+}
+h1::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 100px;
+  right: 100px;
+  bottom: -8px;
+  height: 3px;
+  background: linear-gradient(to right, #dc3545 0%, #ff6f61 100%);
+  border-radius: 2px;
+}
+h1::after {
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    right 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+  opacity: 0;
+  left: 50%;
+  right: 50%;
+  /* On hover, right will be set to 100px via the hover selector below */
+}
+
+h1:hover::after,
+h1:focus::after {
+  left: 100px;
+  right: 100px;
+  opacity: 1;
+}
+
+h1 {
+  animation: underline-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+h1::after {
+  left: var(--after-left, 100px);
+  right: var(--after-right, 100px);
+  opacity: var(--after-opacity, 1);
+}
+.spinner-grow,
+.spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@keyframes underline-in {
+  0% {
+    --after-left: 50%;
+    --after-right: 50%;
+    --after-opacity: 0;
+  }
+  100% {
+    --after-left: 100px;
+    --after-right: 100px;
+    --after-opacity: 1;
+  }
+}

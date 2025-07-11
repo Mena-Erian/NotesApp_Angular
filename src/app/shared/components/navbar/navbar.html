@@ -13,7 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto gap-2">
         <li class="nav-item">
           <a
             class="nav-link text-black"
@@ -44,7 +44,11 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link text-body" routerLink="/login" aria-current="page"
+          <a
+            class="nav-link text-body out"
+            routerLink="/login"
+            aria-current="page"
+            (click)="logout();"
             >Logout</a
           >
         </li>

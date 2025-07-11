@@ -54,4 +54,16 @@ export class Home implements OnInit {
       },
     });
   }
+
+  deleteNote(noteId: string) {
+    this.note.deleteNote(noteId).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.getUserNotes();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 }

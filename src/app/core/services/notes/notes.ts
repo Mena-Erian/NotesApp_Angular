@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { getNotesRoot } from '../../interfaces/notes.interface';
+import { INotes } from '../../interfaces/notes.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,8 @@ export class Notes {
 
   constructor() {}
 
-  getNotes(): Observable<getNotesRoot> {
-    return this.httpClient.get<getNotesRoot>(
-      `${environment.baseUrl}/notes/allNotes`
-    );
+  getNotes(): Observable<INotes> {
+    return this.httpClient.get<INotes>(`${environment.baseUrl}/notes/allNotes`);
   }
 
   getUserNotes(): Observable<any> {

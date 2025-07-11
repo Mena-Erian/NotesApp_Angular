@@ -6,10 +6,10 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
   const pLATEFORM_ID = inject(PLATFORM_ID);
 
   if (isPlatformBrowser(pLATEFORM_ID)) {
-    if (localStorage.getItem('noteAppToken')) {
+    if (localStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {
-          token: `3b8ny__${localStorage.getItem('noteAppToken')}`,
+          token: `3b8ny__${localStorage.getItem('token')}`,
         },
       });
     }

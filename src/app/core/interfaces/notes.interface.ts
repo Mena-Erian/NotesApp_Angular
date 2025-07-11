@@ -1,9 +1,9 @@
-export interface getNotesRoot {
+export interface INotes {
   msg: string;
-  notes: Note[];
+  notes: INote[];
 }
 
-export interface Note {
+export interface INote {
   _id: string;
   title: string;
   content: string;
